@@ -14,10 +14,14 @@ class CreateSalesTable extends Migration
     public function up()
     {
         Schema::create('sales', function (Blueprint $table) {
-            $table->bigIncrements('id_sales')->unsigned();
+            $table->bigIncrements('id_sales');
             $table->date('date_sale')->required();
-            $table->integer('total_sale')->default(0);
+            $table->integer('total_sale');
             $table->timestamps();
+
+            $table->string('rut');
+            $table->foreign('rut')
+                 ->references('rut')->on('users');
         });
     }
 
