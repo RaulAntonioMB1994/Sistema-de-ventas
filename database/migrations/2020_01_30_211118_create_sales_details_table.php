@@ -14,14 +14,10 @@ class CreateSalesDetailsTable extends Migration
     public function up()
     {
         Schema::create('sales_details', function (Blueprint $table) {
-            $table->bigIncrements('id_sales_details');
-            $table->integer('price');
-            $table->integer('quantity');
-            $table->integer('discounts');
-            // $table->unsignedBigInteger('id_products');
-            // $table->foreign('id_products')->references('id_products')->on('products');
-            // $table->unsignedBigInteger('id_sales');
-            // $table->foreign('id_sales')->references('id_sales')->on('sales');
+            $table->bigIncrements('id_sales_details')->unsigned();
+            $table->integer('price')->required();
+            $table->integer('quantity')->default(1)->required();
+            $table->integer('discounts')->default(0);
             $table->timestamps();
         });
     }
