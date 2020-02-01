@@ -1,0 +1,13 @@
+.floating {
+  position: fixed;
+  bottom: 2em;
+  right: 2em;
+  z-index: 100;
+  font-size: 24px;
+
+}
+
+.icon-medium{
+  font-size: 17px;
+
+}
