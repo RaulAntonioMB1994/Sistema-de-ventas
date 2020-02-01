@@ -14,10 +14,12 @@
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 Auth::routes();
 Route::get('dashboard', 'DashboardController@index')->name('index');
+
+
 
 Route::group(['middleware' => ['web']], function () {
 
