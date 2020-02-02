@@ -16,6 +16,7 @@
               <p>Dashboard</p>
             </a>
           </li>
+          
           @if (auth()->user()->type === 'Administrador')
 
           <li>

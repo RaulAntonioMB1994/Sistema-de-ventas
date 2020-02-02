@@ -2,61 +2,84 @@
 
 @section("content")
 <div class="content">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="card">
-              <div class="card-header">
-                <h4 class="card-title"> Simple Table</h4>
-              </div>
-              <div class="card-body">
-                <div class="table-responsive">
-                  <table class="table">
-            <thead>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title"> Productos</h4>
+          <a href="#instructions" data-toggle="modal" data-target="#instructions"><i class="nc-icon nc-alert-circle-i" style="color:darkgoldenrod"></i></a>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
                 <tr>
-                    <td>ID</td>
-                    <td>Título</td>
-                    <td>Descripción</td>
-                    <td>stock</td>
-                    <td>páginas</td>
-                    <td>author</td>
-                    <td>editorial</td>
-                    <td>precio</td>
-                    <td>Acciones</td>
+                  <td>Categoria</td>
+                  <td>Producto</td>
+                  <td>descripción</td>
+                  <td>Precio venta</td>
+                  <td>Stock</td>
+                  <td>Imagen</td>
+                  <td>Acciones</td>
                 </tr>
-            </thead>
-            <tbody>
-                @foreach ($product as $product)
-                    <tr>
-                        <td><a href="">{{  $product->id_products  }}</a></td>
-                        <td>{{  $product->title  }}</td>
-                        <td>{{  $product->description  }}</td>
-                        <td>{{  $product->stock  }}</td>
-                        <td>{{  $product->pages_book  }}</td>
-                        <td>{{  $product->author  }}</td>
-                        <td>{{  $product->editorial  }}</td>
-                        <td>{{  $product->price  }}</td>
-                        <td><a href="{{url('/products/'.$product->id.'/edit')}}">detalles</a>
-                        <a href="{{url('/products/'.$product->id.'/edit')}}">editar</a>
-                        <a href="{{url('/products/'.$product->id.'/edit')}}">eliminar</a></td>
-                    </tr>
+              </thead>
+              <tbody>
+                @foreach ($products as $product)
+                <tr>
+                  @foreach ($categories as $category)
+                  @if($product->id_categories == $category->id_categories)
+                  <td>{{ $category->name  }}</td>
+                  @endif
+                  @endforeach
+                  <td align="justify">{{ $product->title}}</td>
+                  <td align="justify">{{ $product->description}}</td>
+                  <td>{{ $product->price}}</td>
+                  <td>{{ $product->stock}}</td>
+                  <td>{{ $product->extension}}</td>
+                  <td>
+                    <a href="{{route('products.show',$product->id_products)}}"><i class="nc-icon nc-glasses-2 icon-medium" style="color:green"></i></a>
+
+                    <a href="{{route('products.edit',$product->id_products)}}"><i class="nc-icon nc-ruler-pencil icon-medium" style="color:dodgerblue"></i></a>
+                    <a href="{{route('products.destroy',$product->id_products)}}"><i class="nc-icon nc-simple-remove icon-medium" style="color:orangered"></i></a>
+                  </td>
+                </tr>
                 @endforeach
-            </tbody>
-        </table>
-                </div>
-              </div>
-            </div>
+              </tbody>
+            </table>
           </div>
-
-    <div class="big-padding text-center blue-grey white-text">
-        <h1>Productos</h1>
+        </div>
+      </div>
     </div>
-    <div class="container">
-        
-    </div>
-
-    <div class="floating">
+    <div>
+      <div class="floating icon-big">
         <a href="{{url('/products/create')}}" class="btn btn-primary btn-fab">
-            <i class="material-icons">add</i>
+          <i class="nc-icon nc-simple-add"></i>
         </a>
+      </div>
     </div>
-@endsection
+
+
+    {{-- Modal --}}
+    <div class="modal fade" id="instructions" tabindex="-1" role="dialog" aria-labelledby="instructions" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Representación de los iconos </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p><i class="nc-icon nc-glasses-2 icon-medium" style="color:green"></i>  Permite ver todos los datos de un producto.</p>
+            <p><i class="nc-icon nc-ruler-pencil icon-medium" style="color:dodgerblue"></i>  Permite ver editar los datos de un producto.</p>
+            <p><i class="nc-icon nc-simple-remove icon-medium" style="color:orangered"></i>  Permite ver eliminar un producto.</p>
+            
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-info" data-dismiss="modal">Volver</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  @endsection

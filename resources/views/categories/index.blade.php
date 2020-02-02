@@ -7,6 +7,7 @@
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title"> Categorias</h4>
+                    <a href="#instructions" data-toggle="modal" data-target="#instructions"><i class="nc-icon nc-alert-circle-i" style="color:darkgoldenrod"></i></a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -42,5 +43,24 @@
             </a>
         </div>
     </div>
+    <div class="modal fade" id="instructions" tabindex="-1" role="dialog" aria-labelledby="instructions" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Representación de los iconos </h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p><i class="nc-icon nc-ruler-pencil icon-medium" style="color:dodgerblue"></i>  Permite ver editar los datos de una categoria.</p>
+              <p><i class="nc-icon nc-simple-remove icon-medium" style="color:orangered"></i>  Permite ver eliminar una categoria.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-info" data-dismiss="modal">Volver</button>
+            </div>
+          </div>
+        </div>
+      </div>
 </div>
-        @endsection
+@endsection

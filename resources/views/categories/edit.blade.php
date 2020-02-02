@@ -11,18 +11,18 @@
                 <div class="card-body">
                     <form method="POST" action="{{ route('categories.update',$category->id_categories) }}" role="form">
                         {{ csrf_field() }}
-                        <input name="_method" type="hidden" value="PUT">
+                        @method('PUT')
                         <div class="row">
                             <div class="col-md-12 pr-1">
                                 <div class="form-group">
                                     <label>Id de categoria (desactivado)</label>
-                                    <input type="text" class="form-control" disabled="" placeholder="Company" value="{{$category->id_categories}}">
+                                    <input type="text" class="form-control" disabled="" placeholder="id" value="{{$category->id_categories}}">
                                 </div>
                             </div>
                             <div class="col-md-12 pr-1">
                                 <div class="form-group">
                                     <label>Nombre</label>
-                                    <input type="text" name="name" class="form-control" placeholder="Username" value="{{$category->name}}">
+                                    <input type="text" name="name" class="form-control" placeholder="Nombre" value="{{$category->name}}">
                                 </div>
                             </div>
                         </div>
