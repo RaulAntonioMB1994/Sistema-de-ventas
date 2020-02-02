@@ -11,7 +11,7 @@
                 <div class="card-body">
                     <form method="POST" action="{{ route('categories.update',$category->id_categories) }}" role="form">
                         {{ csrf_field() }}
-                        <input name="_method" type="hidden" value="PATCH">
+                        <input name="_method" type="hidden" value="PUT">
                         <div class="row">
                             <div class="col-md-12 pr-1">
                                 <div class="form-group">

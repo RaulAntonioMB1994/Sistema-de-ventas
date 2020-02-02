@@ -20,9 +20,6 @@ Auth::routes();
 Route::get('dashboard', 'DashboardController@index')->name('index');
 
 
-
-Route::group(['middleware' => ['web']], function () {
-
     //Muestra las categorias
 Route::get('categories','CategoryController@index')->name('categories.index');
 //
@@ -32,12 +29,11 @@ Route::post('categories','CategoryController@store')->name('categories.store');
 //
 //Edita una categoria
 Route::get('categories/{category}/edit','CategoryController@edit')->name('categories.edit')->where('category','[0-9]+');
-Route::put('categories/{category}','CategoryController@update ')->name('categories.update')->where('category','[0-9]+');
+Route::put('categories/{category}','CategoryController@update')->name('categories.update');
 //
 // Eliminar una categoria
 Route::get('categories/{id}/destroy',[ 'uses' => 'CategoryController@destroy','as' => 'categories.destroy'])->where('category','[0-9]+');
 //
-});
 
 
 

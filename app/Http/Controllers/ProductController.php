@@ -18,8 +18,9 @@ class ProductController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('Vendedor(a)');
     }
+
     public function index()
     {
         $product = Product::all(); //se utiliza el metodo all para sacar la lista de productos y guardarlos en la variable $products
