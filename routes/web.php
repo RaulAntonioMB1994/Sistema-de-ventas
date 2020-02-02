@@ -51,10 +51,10 @@ Route::get('product/{product}','ProductController@show')->name('products.show');
 Route::get('products/{product}/edit','ProductController@edit')->name('products.edit')->where('product','[0-9]+');
 Route::put('products/{product}','ProductController@update')->name('products.update')->where('product','[0-9]+');
 // Eliminar un producto
-Route::get('products/{id}/destroy',[ 'uses' => 'ProductController@destroy','as' => 'products.destroy'])->where('category','[0-9]+');
+Route::get('products/{product}/destroy',[ 'uses' => 'ProductController@destroy','as' => 'products.destroy'])->where('product','[0-9]+');
 //Ruta para el archivo
 Route::get('products/images/{filename}', function ($filename) {
-    $path = storage_path("app/images/$filename");
+    $path = storage_path("app/images/products/$filename");
     if(!\File::exists($path)) abort(404);
     $file = \File::get($path);
     $type = \File::mimeType($path);
@@ -66,5 +66,21 @@ Route::get('products/images/{filename}', function ($filename) {
 //////////////////////
 
 
+
+//:::::::::::::::://
+// Ruta ventas //
+//:::::::::::::::://
+//Muestra las ventas
+Route::get('sales','SaleController@index')->name('sales.index');
+// Crear una venta
+Route::get('sales/create','SaleController@create')->name('sales.create');
+Route::post('sales','SaleController@store')->name('sales.store');
+//Edita una venta
+Route::get('sales/{sale}/edit','SaleController@edit')->name('sales.edit')->where('sale','[0-9]+');
+Route::put('sales/{sale}','SaleController@update')->name('sales.update')->where('sale','[0-9]+');
+// Eliminar una venta
+Route::get('sales/{sale}/destroy',[ 'uses' => 'SaleController@destroy','as' => 'sales.destroy'])->where('sale','[0-9]+');
+////////////////////// 
+//////////////////////
 
 

@@ -159,7 +159,7 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
 
-        $image_path= storage_path().'/app/images/'.$product->id_products.'.'.$product->extension;
+        $image_path= storage_path().'/app/images/products/'.$product->id_products.'.'.$product->extension;
         unlink($image_path);
         $product->delete();
 
