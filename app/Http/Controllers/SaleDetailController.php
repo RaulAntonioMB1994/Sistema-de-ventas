@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Sale;
-class SaleController extends Controller
+
+class SaleDetailController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,7 +20,7 @@ class SaleController extends Controller
 
     public function index()
     {
-        return view("sales.index");
+        return view("sales_details.index");
     }
 
     /**
@@ -30,8 +30,7 @@ class SaleController extends Controller
      */
     public function create()
     {
-        $sale = new Sale;
-        return view("sales.create",["sale" => $sale]);
+        //
     }
 
     /**

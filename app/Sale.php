@@ -8,6 +8,6 @@ class Sale extends Model
 {
     protected $primaryKey = 'id_sales';
 
-    protected $fillable = ['date_sales', 'total_sale', 'rut'];
+    protected $fillable = ['date_sales', 'total_sale', 'rut','rut_clients'];
 
 }

@@ -68,7 +68,7 @@ Route::get('products/images/{filename}', function ($filename) {
 
 
 //:::::::::::::::://
-// Ruta ventas //
+// Ruta ventas    //
 //:::::::::::::::://
 //Muestra las ventas
 Route::get('sales','SaleController@index')->name('sales.index');
@@ -84,3 +84,9 @@ Route::get('sales/{sale}/destroy',[ 'uses' => 'SaleController@destroy','as' => '
 //////////////////////
 
 
+//:::::::::::::::::::://
+// Ruta detalle venta //
+//:::::::::::::::::::://
+
+//Muestra las ventas
+Route::get('sales_details','SaleDetailController@index')->name('sales_details.index');

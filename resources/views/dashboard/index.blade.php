@@ -15,7 +15,7 @@
             <div class="col-7 col-md-8">
               <div class="numbers">
                 <p class="card-category">Ventas del día</p>
-                <p class="card-title">15
+                <p class="card-title">{{$cant_sales}}
                   <p>
               </div>
             </div>
@@ -24,7 +24,7 @@
         <div class="card-footer ">
           <hr>
           <div class="stats">
-            <i class="fa fa-refresh"></i> Update Now
+            <a href=""><i class="fa fa-refresh"></i> Actualizar ahora</a>
           </div>
         </div>
       </div>
@@ -42,7 +42,7 @@
             <div class="col-7 col-md-8">
               <div class="numbers">
                 <p class="card-category">Productos</p>
-                <p class="card-title">200
+                <p class="card-title">{{$cant_products}}
                   <p>
               </div>
             </div>
@@ -51,7 +51,7 @@
         <div class="card-footer ">
           <hr>
           <div class="stats">
-            <i class="fa fa-refresh"></i> Actualizar ahora
+            <a href=""><i class="fa fa-refresh"></i> Actualizar ahora</a>
           </div>
         </div>
       </div>

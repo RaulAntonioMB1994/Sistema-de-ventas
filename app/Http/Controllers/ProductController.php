@@ -67,10 +67,9 @@ class ProductController extends Controller
             $products->extension = $extension;
 
         }
- 
         if($products->save()){
             if($hasFile){
-                $request->file->storeAs('images',"$products->id_products".".$extension");
+                $request->file->storeAs('images/products/',"$products->id_products".".$extension");
             }
             return redirect("products");
         }else{
@@ -106,6 +105,8 @@ class ProductController extends Controller
         return view("products.edit")->with('product', $products)->with("categories", $categories);
     }
 
+    
+
     /**
      * Update the specified resource in storage.
      *
@@ -140,7 +141,7 @@ class ProductController extends Controller
         
         if($products->save()){
             if($hasFile){
-                $request->file->storeAs('images',"$products->id_products".".$extension");
+                $request->file->storeAs('images/products/',"$products->id_products".".$extension");
             }
             return redirect("products");
         }else{
