@@ -33,7 +33,7 @@
 
                             <div class="col-md-4 pr-1" style="padding-top: 25px;">
                                 <div class="form-group custom-file">
-                                    <input name="file" type="file" class="custom-file-input" >
+                                    <input name="file" type="file" class="custom-file-input" required >
                                     <label class="custom-file-label">Elija el
                                         archivo...</label>
                                 </div>

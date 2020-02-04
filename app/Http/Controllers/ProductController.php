@@ -21,11 +21,16 @@ class ProductController extends Controller
         $this->middleware('Administrador');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $categories = Category::all();
-        $products = Product::all(); //se utiliza el metodo all para sacar la lista de productos y guardarlos en la variable $products
-        return view("products.index",["products" => $products, "categories" => $categories]); // retorna la vista products.index junto a la variable que contiene los productos
+
+        $name = $request->get('title');
+        $products = Product::orderBy('id_products','DESC')->name($name)->paginate(2);
+
+        $n_c = $request->get('n_c');
+        $categories = Category::orderBy('id_categories','DESC')->NameCategories($n_c)->get();
+
+        return view('products.index', ["products" => $products, "categories" => $categories]);
    
     }
 

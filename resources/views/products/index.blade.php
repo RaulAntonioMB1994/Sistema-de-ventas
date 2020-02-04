@@ -6,9 +6,45 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-header">
-          <h4 class="card-title"> Productos</h4>
-          <a href="#instructions" data-toggle="modal" data-target="#instructions"><i class="nc-icon nc-alert-circle-i" style="color:darkgoldenrod"></i></a>
-        </div>
+          <div class="row">
+              <div class="col-md-6">
+                  <h4 class="card-title"> Productos</h4>
+                  <a href="#instructions" data-toggle="modal" data-target="#instructions"><i
+                          class="nc-icon nc-alert-circle-i" style="color:darkgoldenrod"></i></a>
+              </div>
+              {{-- Buscador --}}
+              <div class="col-md-3">
+
+                  <form method="GET" action="{{ route('products.index') }}" role="form">
+                      <div class="input-group no-border">
+                          <input type="text" value="" name="n_c" class="form-control"
+                              placeholder="Buscar por categoria">
+                          <div class="input-group-append">
+                              <div class="input-group-text">
+                                  <i class="nc-icon nc-zoom-split"></i>
+                              </div>
+                          </div>
+                      </div>
+                  </form>
+              </div>
+              <div class="col-md-3">
+
+                  <form method="GET" action="{{ route('products.index') }}" role="form">
+                      <div class="input-group no-border">
+                          <input type="text" value="" name="title" class="form-control"
+                              placeholder="Buscar por producto">
+                          <div class="input-group-append">
+                              <div class="input-group-text">
+                                  <i class="nc-icon nc-zoom-split"></i>
+                              </div>
+                          </div>
+                      </div>
+                  </form>
+              </div>
+
+              {{--  --}}
+          </div>
+      </div>
         <div class="card-body">
           <div class="table-responsive">
             <table class="table">
@@ -19,7 +55,6 @@
                   <td>descripción</td>
                   <td>Precio venta</td>
                   <td>Stock</td>
-                  <td>Imagen</td>
                   <td>Acciones</td>
                 </tr>
               </thead>
@@ -29,23 +64,29 @@
                   @foreach ($categories as $category)
                   @if($product->id_categories == $category->id_categories)
                   <td>{{ $category->name  }}</td>
-                  @endif
-                  @endforeach
                   <td align="justify">{{ $product->title}}</td>
                   <td align="justify">{{ $product->description}}</td>
                   <td>{{ $product->price}}</td>
                   <td>{{ $product->stock}}</td>
-                  <td>{{ $product->extension}}</td>
                   <td>
                     <a href="{{route('products.show',$product->id_products)}}"><i class="nc-icon nc-glasses-2 icon-medium" style="color:green"></i></a>
 
                     <a href="{{route('products.edit',$product->id_products)}}"><i class="nc-icon nc-ruler-pencil icon-medium" style="color:dodgerblue"></i></a>
                     <a href="{{route('products.destroy',$product->id_products)}}"><i class="nc-icon nc-simple-remove icon-medium" style="color:orangered"></i></a>
                   </td>
+                  @endif
+                  @endforeach
+                  
                 </tr>
                 @endforeach
               </tbody>
             </table>
+            <nav aria-label="Page navigation example">
+              <ul class="pagination justify-content-end">
+                  {{$products->render()}}
+
+              </ul>
+            </nav>
           </div>
         </div>
       </div>

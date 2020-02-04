@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Sale;
+use App\Product;
+use App\Category;
+
 class SaleController extends Controller
 {
     /**
@@ -18,9 +21,15 @@ class SaleController extends Controller
     }
 
 
-    public function index()
+    public function index(Request $request)//El request es opcional
     {
-        return view("sales.index");
+        $name = $request->get('title');
+        $products = Product::orderBy('id_products','DESC')->name($name)->paginate(10);
+
+        $n_c = $request->get('n_c');
+        $categories = Category::orderBy('id_categories','DESC')->NameCategories($n_c)->get();
+
+        return view('sales.index', ["products" => $products, "categories" => $categories]);
     }
 
     /**

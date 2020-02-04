@@ -6,9 +6,44 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title"> Productos</h4>
-                    <a href="#instructions" data-toggle="modal" data-target="#instructions"><i
-                            class="nc-icon nc-alert-circle-i" style="color:darkgoldenrod"></i></a>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4 class="card-title"> Productos</h4>
+                            <a href="#instructions" data-toggle="modal" data-target="#instructions"><i
+                                    class="nc-icon nc-alert-circle-i" style="color:darkgoldenrod"></i></a>
+                        </div>
+                        {{-- Buscador --}}
+                        <div class="col-md-3">
+
+                            <form method="GET" action="{{ route('sales.index') }}" role="form">
+                                <div class="input-group no-border">
+                                    <input type="text" value="" name="n_c" class="form-control"
+                                        placeholder="Buscar por categoria">
+                                    <div class="input-group-append">
+                                        <div class="input-group-text">
+                                            <i class="nc-icon nc-zoom-split"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-md-3">
+
+                            <form method="GET" action="{{ route('sales.index') }}" role="form">
+                                <div class="input-group no-border">
+                                    <input type="text" value="" name="title" class="form-control"
+                                        placeholder="Buscar por producto">
+                                    <div class="input-group-append">
+                                        <div class="input-group-text">
+                                            <i class="nc-icon nc-zoom-split"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        {{--  --}}
+                    </div>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -17,34 +52,40 @@
                                 <tr>
                                     <td>Categoria</td>
                                     <td>Producto</td>
-                                    <td>descripción</td>
                                     <td>Precio venta</td>
                                     <td>Stock</td>
-                                    <td>Imagen</td>
-                                    <td>Acciones</td>
+                                    <td>Agregar</td>
                                 </tr>
                             </thead>
                             <tbody>
+
+                                @foreach ($products as $product)
                                 <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    @foreach ($categories as $category)
+                                    @if ($category->id_categories == $product->id_categories)
+                                        <td>{{$category->name}}</td>
+
+                                    <td>{{$product->title}}</td>
+                                    <td>{{$product->price}}</td>
+                                    <td>{{$product->stock}}</td>
+                                    <td><a href="{{url('/sales/create')}}"><i class="nc-icon nc-cart-simple icon-medium" style="color:green"></i></a>
+                                    </td>
+
+                                    @endif
+                                    @endforeach
                                 </tr>
+
+                                @endforeach
                             </tbody>
                         </table>
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination justify-content-end">
+                                {{$products->render()}}
+
+                            </ul>
+                          </nav>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div>
-            <div class="floating icon-big">
-                <a href="{{url('/sales/create')}}" class="btn btn-primary btn-fab">
-                    <i class="nc-icon nc-simple-add"></i>
-                </a>
             </div>
         </div>
 

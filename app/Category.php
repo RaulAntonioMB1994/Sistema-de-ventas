@@ -10,4 +10,14 @@ class Category extends Model
 
     protected $fillable = ['name'];
     
+
+
+    //scope
+
+    public function scopeNameCategories($query, $n_c){
+
+        if ($n_c) {
+            return $query->where('name','LIKE','%'.$n_c.'%');
+        }
+    }
 }

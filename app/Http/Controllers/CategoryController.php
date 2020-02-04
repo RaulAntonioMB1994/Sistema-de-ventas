@@ -25,7 +25,8 @@ class CategoryController extends Controller
     
     public function index()
     {
-        $category = Category::all(); //se utiliza el metodo all para sacar la lista de productos y guardarlos en la variable $products
+        $category = Category::orderBy('id_categories','ASC')->paginate(8);;
+
         return view("categories/index",["category" => $category]); // retorna la vista products.index junto a la variable que contiene los productos
     
         

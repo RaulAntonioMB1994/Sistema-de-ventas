@@ -17,16 +17,6 @@
 
           <div class="collapse navbar-collapse justify-content-end" id="navigation">
 
-            <form>
-              <div class="input-group no-border">
-                <input type="text" value="" class="form-control" placeholder="Buscador...">
-                <div class="input-group-append">
-                  <div class="input-group-text">
-                    <i class="nc-icon nc-zoom-split"></i>
-                  </div>
-                </div>
-              </div>
-            </form>
 
             <ul class="navbar-nav">
 
