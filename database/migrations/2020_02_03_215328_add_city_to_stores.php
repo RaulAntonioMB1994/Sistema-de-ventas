@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddRutClientsToSales extends Migration
+class AddCityToStores extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class AddRutClientsToSales extends Migration
      */
     public function up()
     {
-        Schema::table('sales', function (Blueprint $table) {
-            $table->string('rut_clients')->nullable();
-            $table->foreign('rut_clients')
-                 ->references('rut_clients')->on('clients');
+        Schema::table('stores', function (Blueprint $table) {
+            $table->text('city')->nullable()->after('address');
         });
-
     }
 
     /**
@@ -28,8 +25,8 @@ class AddRutClientsToSales extends Migration
      */
     public function down()
     {
-        Schema::table('sales', function (Blueprint $table) {
-            $table->dropColumn('rut_clients');
+        Schema::table('stores', function (Blueprint $table) {
+            $table->dropColumn('city');
         });
     }
 }
