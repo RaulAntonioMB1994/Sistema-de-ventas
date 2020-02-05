@@ -7,11 +7,16 @@
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title"> Categorias</h4>
+    
+                    {{-- Modal instructions --}}
                     <a href="#instructions" data-toggle="modal" data-target="#instructions"><i
                             class="nc-icon nc-alert-circle-i" style="color:darkgoldenrod"></i></a>
+                    {{-- End Modal --}}
+
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
+                        {{-- table responsive --}}
                         <table class="table">
                             <thead>
                                 <tr>
@@ -26,17 +31,22 @@
                                     <td><a href="">{{ $categories->id_categories  }}</a></td>
                                     <td>{{ $categories->name  }}</td>
                                     <td>
+
+                                        {{-- Link icon for edit - destroys --}}
                                         <a href="{{route('categories.edit',$categories->id_categories)}}"><i
                                                 class="nc-icon nc-ruler-pencil icon-medium"
                                                 style="color:dodgerblue"></i></a>
                                         <a href="{{route('categories.destroy',$categories->id_categories)}}"><i
                                                 class="nc-icon nc-simple-remove icon-medium"
                                                 style="color:orangered"></i></a>
+                                        {{-- End Link icon--}}
+
                                     </td>
                                 </tr>
                                 @endforeach
                             </tbody>
                         </table>
+                        {{-- End table --}}
                         <nav aria-label="Page navigation example">
                             <ul class="pagination justify-content-end">
                                 {{$category->render()}}
@@ -47,13 +57,18 @@
                 </div>
             </div>
         </div>
+
+        {{--  Button create --}}
         <div class="floating icon-big">
 
             <a href="{{url('/categories/create')}}" class="btn btn-primary btn-fab">
                 <i class="nc-icon nc-simple-add"></i>
             </a>
         </div>
+        {{-- End Button create --}}
     </div>
+
+    {{-- Modal --}}
     <div class="modal fade" id="instructions" tabindex="-1" role="dialog" aria-labelledby="instructions"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -76,5 +91,12 @@
             </div>
         </div>
     </div>
+    {{-- End modal --}}
 </div>
+
+{{-- Use of notifications --}}
+@jquery
+@toastr_js
+@toastr_render
+{{-- End notifications--}}
 @endsection

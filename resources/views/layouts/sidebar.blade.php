@@ -32,6 +32,13 @@
               <p>Productos</p>
             </a>
           </li>
+
+          <li>
+            <a href="{{url('business')}}">
+              <i class="nc-icon nc-briefcase-24"></i>
+              <p>Empresa</p>
+            </a>
+          </li>
           @endif
 
           @if (auth()->user()->type === 'Vendedor(a)')

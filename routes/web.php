@@ -37,6 +37,13 @@ Route::get('categories/{id}/destroy',[ 'uses' => 'CategoryController@destroy','a
 //////////////////////
 
 
+Route::get('business','BusinessController@index')->name('business.index');
+//Edita la empresa
+Route::get('business/{business}/edit','BusinessController@edit')->name('business.edit');
+Route::put('business/{business}','BusinessController@update')->name('business.update');
+
+
+
 //:::::::::::::::://
 // Ruta producto  //
 //:::::::::::::::://
@@ -62,6 +69,10 @@ Route::get('products/images/{filename}', function ($filename) {
     $response->header("Content-Type",$type);
     return $response;
 });
+
+
+Route::get('products/pdf','ProductController@exportPdf')->name('products.pdf');
+
 ////////////////////// 
 //////////////////////
 

@@ -32,7 +32,7 @@
 
             @yield('content')
 
-            <footer class="footer footer-black  footer-white  ">
+            <footer class="footer footer-black  footer-white">
                 @include('layouts.footer')
             </footer>
 

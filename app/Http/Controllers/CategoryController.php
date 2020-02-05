@@ -3,117 +3,103 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
+// Session for notifications
+use Session;
+// 
+// Model Category
 use App\Category;
-use App\Http\Requests;
-
-use Illuminate\Support\Facades\Auth;
-
-
+// 
 
 class CategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
+    // Access only to administrators
     public function __construct()
     {
         $this->middleware('Administrador');
     }
-    
+    // 
+
+
+
+    // Show all category data
     public function index()
     {
-        $category = Category::orderBy('id_categories','ASC')->paginate(8);;
-
-        return view("categories/index",["category" => $category]); // retorna la vista products.index junto a la variable que contiene los productos
-    
-        
+        // Database query. Order ascendant.It includes pagination.
+        $category = Category::orderBy('id_categories', 'ASC')->paginate(8);;
+        //redirect to index of categories
+        return view("categories/index", ["category" => $category]);
     }
+    // 
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+
+    // Create a new category
     public function create()
     {
         $category = new Category;
-        return view("categories.create",["category" => $category]);
+        return view("categories.create", ["category" => $category]);
     }
+    // 
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
+
+    // Function store(receive parameters)
     public function store(Request $request)
     {
         $category = new Category;
         $category->name = $request->name;
-        
-        if($category->save()){
+
+        if ($category->save()) {
+            Session::flash('success', 'Categoria ' . $category->name . ' se  agrego correctamente');
             return redirect("categories");
-        }else{
+        } else {
+            Session::flash('error', 'No se pudo agregar correctamente');
             return view("categories.create");
         }
     }
+    //  
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
+    // Function edit(receive parameters)
     public function edit($id)
     {
         $category = Category::find($id);
         return view("categories.edit")->with('category', $category);
     }
+    // 
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
+
+    // Function update
     public function update(Request $request, $id)
     {
         $category = Category::find($id);
         $category->name = $request->name;
-        
-        if($category->save()){
+
+        if ($category->save()) {
+            Session::flash('success', 'Categoria editada correctamente');
             return redirect("/categories");
-        }else{
-            return view("categories.edit",["category" => $category]);
+        } else {
+            Session::flash('error', 'No se pudo editar correctamente');
+            return view("categories.edit", ["category" => $category]);
         }
     }
+    // 
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
+
+    // Function destroy
     public function destroy($id)
     {
-
-        Category::find($id)->delete();
-        return redirect()->route('categories.index')->with('success','Categoría eliminada satisfactoriamente');
-    
+        $category = Category::find($id);
+        $name_category_removed = $category->name;
+        $category->delete();
+        Session::flash('success', 'Categoría ' . $name_category_removed . ' eliminada correctamente');
+        return redirect()->route('categories.index');
     }
+    // 
+
+
 }

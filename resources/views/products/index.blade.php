@@ -7,47 +7,49 @@
       <div class="card">
         <div class="card-header">
           <div class="row">
-              <div class="col-md-6">
-                  <h4 class="card-title"> Productos</h4>
-                  <a href="#instructions" data-toggle="modal" data-target="#instructions"><i
-                          class="nc-icon nc-alert-circle-i" style="color:darkgoldenrod"></i></a>
-              </div>
-              {{-- Buscador --}}
-              <div class="col-md-3">
-
-                  <form method="GET" action="{{ route('products.index') }}" role="form">
-                      <div class="input-group no-border">
-                          <input type="text" value="" name="n_c" class="form-control"
-                              placeholder="Buscar por categoria">
-                          <div class="input-group-append">
-                              <div class="input-group-text">
-                                  <i class="nc-icon nc-zoom-split"></i>
-                              </div>
-                          </div>
-                      </div>
-                  </form>
-              </div>
-              <div class="col-md-3">
-
-                  <form method="GET" action="{{ route('products.index') }}" role="form">
-                      <div class="input-group no-border">
-                          <input type="text" value="" name="title" class="form-control"
-                              placeholder="Buscar por producto">
-                          <div class="input-group-append">
-                              <div class="input-group-text">
-                                  <i class="nc-icon nc-zoom-split"></i>
-                              </div>
-                          </div>
-                      </div>
-                  </form>
-              </div>
-
-              {{--  --}}
+            <div class="col-md-6">
+              <h4 class="card-title"> Productos </h4>
+              {{-- Modal instructions --}}
+              <a href="#instructions" data-toggle="modal" data-target="#instructions"><i
+                  class="nc-icon nc-alert-circle-i" style="color:darkgoldenrod"></i></a>
+              {{-- End Modal --}}
+              {{-- Download pdf --}}
+              <a href="{{route('products.pdf')}}"><i class="nc-icon nc-cloud-download-93"
+                  style="color:darkgoldenrod"></i></a>
+              {{-- End download --}}
+            </div>
+            {{-- Search --}}
+            <div class="col-md-3">
+              <form method="GET" action="{{ route('products.index') }}" role="form">
+                <div class="input-group no-border">
+                  <input type="text" value="" name="n_c" class="form-control" placeholder="Buscar por categoria">
+                  <div class="input-group-append">
+                    <div class="input-group-text">
+                      <i class="nc-icon nc-zoom-split"></i>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="col-md-3">
+              <form method="GET" action="{{ route('products.index') }}" role="form">
+                <div class="input-group no-border">
+                  <input type="text" value="" name="title" class="form-control" placeholder="Buscar por producto">
+                  <div class="input-group-append">
+                    <div class="input-group-text">
+                      <i class="nc-icon nc-zoom-split"></i>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+            {{-- End search --}}
           </div>
-      </div>
+        </div>
         <div class="card-body">
-          <div class="table-responsive">
-            <table class="table">
+          <div class="table-responsive ">
+            {{-- Table responsive --}}
+            <table class="table ">
               <thead>
                 <tr>
                   <td>Categoria</td>
@@ -69,28 +71,35 @@
                   <td>{{ $product->price}}</td>
                   <td>{{ $product->stock}}</td>
                   <td>
-                    <a href="{{route('products.show',$product->id_products)}}"><i class="nc-icon nc-glasses-2 icon-medium" style="color:green"></i></a>
-
-                    <a href="{{route('products.edit',$product->id_products)}}"><i class="nc-icon nc-ruler-pencil icon-medium" style="color:dodgerblue"></i></a>
-                    <a href="{{route('products.destroy',$product->id_products)}}"><i class="nc-icon nc-simple-remove icon-medium" style="color:orangered"></i></a>
+                    {{-- Link icon for show - edit - destroys --}}
+                    <a href="{{route('products.show',$product->id_products)}}"><i
+                        class="nc-icon nc-glasses-2 icon-medium" style="color:green"></i></a>
+                    <a href="{{route('products.edit',$product->id_products)}}"><i
+                        class="nc-icon nc-ruler-pencil icon-medium" style="color:dodgerblue"></i></a>
+                    <a href="{{route('products.destroy',$product->id_products)}}"><i
+                        class="nc-icon nc-simple-remove icon-medium" style="color:orangered"></i></a>
+                        {{-- End Link icon--}}
                   </td>
                   @endif
                   @endforeach
-                  
                 </tr>
                 @endforeach
               </tbody>
             </table>
+            {{-- End table --}}
+            {{-- Pagination  --}}
             <nav aria-label="Page navigation example">
               <ul class="pagination justify-content-end">
-                  {{$products->render()}}
-
+                {{$products->render()}}
               </ul>
             </nav>
+            {{--  End Pagination--}}
           </div>
         </div>
       </div>
     </div>
+
+    {{--  Button create --}}
     <div>
       <div class="floating icon-big">
         <a href="{{url('/products/create')}}" class="btn btn-primary btn-fab">
@@ -98,10 +107,11 @@
         </a>
       </div>
     </div>
-
+    {{-- End Button create --}}
 
     {{-- Modal --}}
-    <div class="modal fade" id="instructions" tabindex="-1" role="dialog" aria-labelledby="instructions" aria-hidden="true">
+    <div class="modal fade" id="instructions" tabindex="-1" role="dialog" aria-labelledby="instructions"
+      aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -111,10 +121,13 @@
             </button>
           </div>
           <div class="modal-body">
-            <p><i class="nc-icon nc-glasses-2 icon-medium" style="color:green"></i>  Permite ver todos los datos de un producto.</p>
-            <p><i class="nc-icon nc-ruler-pencil icon-medium" style="color:dodgerblue"></i>  Permite ver editar los datos de un producto.</p>
-            <p><i class="nc-icon nc-simple-remove icon-medium" style="color:orangered"></i>  Permite ver eliminar un producto.</p>
-            
+            <p><i class="nc-icon nc-glasses-2 icon-medium" style="color:green"></i> Permite ver todos los datos de un
+              producto.</p>
+            <p><i class="nc-icon nc-ruler-pencil icon-medium" style="color:dodgerblue"></i> Permite ver editar los datos
+              de un producto.</p>
+            <p><i class="nc-icon nc-simple-remove icon-medium" style="color:orangered"></i> Permite ver eliminar un
+              producto.</p>
+
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-info" data-dismiss="modal">Volver</button>
@@ -122,5 +135,13 @@
         </div>
       </div>
     </div>
+    {{-- End Modal --}}
+
   </div>
+
+  {{-- Use of notifications --}}
+  @jquery
+  @toastr_js
+  @toastr_render
+  {{-- End notifications--}}
   @endsection

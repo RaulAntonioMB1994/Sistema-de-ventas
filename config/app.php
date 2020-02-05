@@ -175,6 +175,12 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        //pdf
+        Barryvdh\DomPDF\ServiceProvider::class,
+
+        //toars
+        Yoeunes\Toastr\ToastrServiceProvider::class
+
     ],
 
     /*
@@ -189,7 +195,7 @@ return [
     */
 
     'aliases' => [
-
+        'PDF' => Barryvdh\DomPDF\Facade::class,
         'App' => Illuminate\Support\Facades\App::class,
         'Arr' => Illuminate\Support\Arr::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
