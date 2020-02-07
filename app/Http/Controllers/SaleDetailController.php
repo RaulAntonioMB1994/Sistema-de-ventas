@@ -14,7 +14,7 @@ class SaleDetailController extends Controller
 
     public function __construct()
     {
-        $this->middleware('Vendedor(a)');
+        $this->middleware('auth');
     }
 
 

@@ -39,7 +39,7 @@ class BusinessController extends Controller
         $business->name = $request->name;
 
         if ($business->save()) {
-            Session::flash('success', 'Categoria editada correctamente');
+            Session::flash('success', 'datos de la empresa editada correctamente');
             return redirect("/business");
         } else {
             Session::flash('error', 'No se pudo editar correctamente');

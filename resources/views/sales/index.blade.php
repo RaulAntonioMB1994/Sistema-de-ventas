@@ -68,9 +68,8 @@
                                     <td>{{$product->title}}</td>
                                     <td>{{$product->price}}</td>
                                     <td>{{$product->stock}}</td>
-                                    <td><a href="{{url('/sales/create')}}"><i class="nc-icon nc-cart-simple icon-medium" style="color:green"></i></a>
+                                    <td><a href="{{route('sales.shopping_cart',$product->id_products)}}"><i class="nc-icon nc-cart-simple icon-medium" style="color:green"></i></a>
                                     </td>
-
                                     @endif
                                     @endforeach
                                 </tr>

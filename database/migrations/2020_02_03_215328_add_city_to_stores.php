@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddCityToStores extends Migration
+class AddCityToShops extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class AddCityToStores extends Migration
      */
     public function up()
     {
-        Schema::table('stores', function (Blueprint $table) {
+        Schema::table('shops', function (Blueprint $table) {
             $table->text('city')->nullable()->after('address');
         });
     }
@@ -25,7 +25,7 @@ class AddCityToStores extends Migration
      */
     public function down()
     {
-        Schema::table('stores', function (Blueprint $table) {
+        Schema::table('shops', function (Blueprint $table) {
             $table->dropColumn('city');
         });
     }

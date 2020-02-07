@@ -17,7 +17,7 @@ class SaleController extends Controller
 
     public function __construct()
     {
-        $this->middleware('Vendedor(a)');
+        $this->middleware('auth');
     }
 
 
@@ -37,10 +37,10 @@ class SaleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function shopping_cart($id)
     {
         $sale = new Sale;
-        return view("sales.create",["sale" => $sale]);
+        return view("sales.shopping_cart",["sale" => $sale]);
     }
 
     /**

@@ -1,23 +1,17 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-
-
 Route::get('/', function () {
     return view('auth.login');
 });
 Auth::routes();
+
+
+//:::::::::::::::://
+// Ruta dashboard //
+//:::::::::::::::://
 Route::get('dashboard', 'DashboardController@index')->name('index');
+////////////////////// 
+//////////////////////
 
 
 //:::::::::::::::://
@@ -37,11 +31,33 @@ Route::get('categories/{id}/destroy',[ 'uses' => 'CategoryController@destroy','a
 //////////////////////
 
 
+//:::::::::::::::://
+//  Ruta empresa  //
+//:::::::::::::::://
+// Muestra los datos de la empresa
 Route::get('business','BusinessController@index')->name('business.index');
 //Edita la empresa
 Route::get('business/{business}/edit','BusinessController@edit')->name('business.edit');
 Route::put('business/{business}','BusinessController@update')->name('business.update');
+////////////////////  
+////////////////////
 
+
+//:::::::::::::::://
+// Ruta tienda    //
+//:::::::::::::::://
+//Muestra las tiendas
+Route::get('shops','ShopController@index')->name('shops.index');
+// Crear una categoria
+Route::get('shops/create','ShopController@create')->name('shops.create');
+Route::post('shops','ShopController@store')->name('shops.store');
+//Edita una categoria
+Route::get('shops/{shop}/edit','ShopController@edit')->name('shops.edit')->where('shop','[0-9]+');
+Route::put('shops/{shop}','ShopController@update')->name('shops.update')->where('shop','[0-9]+');
+// Eliminar una categoria
+Route::get('shops/{shop}/destroy',[ 'uses' => 'ShopController@destroy','as' => 'shops.destroy'])->where('shop','[0-9]+');
+////////////////////// 
+//////////////////////
 
 
 //:::::::::::::::://
@@ -93,6 +109,7 @@ Route::put('sales/{sale}','SaleController@update')->name('sales.update')->where(
 Route::get('sales/{sale}/destroy',[ 'uses' => 'SaleController@destroy','as' => 'sales.destroy'])->where('sale','[0-9]+');
 ////////////////////// 
 //////////////////////
+Route::get('sales/{product}/shopping_cart','SaleController@shopping_cart')->name('sales.shopping_cart')->where('product','[0-9]+');
 
 
 //:::::::::::::::::::://
