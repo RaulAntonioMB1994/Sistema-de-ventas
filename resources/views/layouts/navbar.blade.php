@@ -35,7 +35,16 @@
               </li>
               <!-- Authentication Links -->
 
-
+              <li class="nav-item">
+                <a class="nav-link btn-magnify" href="">
+                  <i class="nc-icon nc-cart-simple"></i>
+                  <p>
+                    <span class="d-md-block">({{$shopping_cart->productsSize()}})</span>
+                  </p>
+                </a>
+              </li>
+              
+             
               @guest
               <li class="nav-item">
                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>

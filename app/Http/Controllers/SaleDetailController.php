@@ -4,6 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+
+
+use App\ShoppingCart;
+use App\InShoppingCart;
+use App\City;
+use App\Region;
+
+
 class SaleDetailController extends Controller
 {
     /**
@@ -20,7 +28,25 @@ class SaleDetailController extends Controller
 
     public function index()
     {
-        return view("sales_details.index");
+        $shopping_cart_id = \Session::get('shopping_cart_id');
+
+        $shopping_cart = ShoppingCart::encuentra_o_crea_session_con_id($shopping_cart_id);
+
+        $products = $shopping_cart->products()->get();
+
+        $total = $shopping_cart->total();
+
+        // $total = $shopping_cart->products()->sum("price");
+
+
+        $regions = Region::all();
+        $cities = City::all();
+
+        return view("sales_details.index", ["total" => $total, "products" => $products, "regions" => $regions, "cities" => $cities ]);
+
+
+
+
     }
 
     /**
@@ -41,7 +67,14 @@ class SaleDetailController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $name= $request->name;
+        $rut = $request->rut;
+        $email = $request->email;
+        $regions = $request->regions;
+        $cities = $request->cities;
+        $address = $request->address;
+        $quantily = $request->quantily;
+        dd('name:'.$name.' rut:'.$rut.' email:'.$email.' regions:'.$regions.' cities:'.$cities.' address:'.$address.' quantily:'.$quantily);
     }
 
     /**
@@ -50,10 +83,6 @@ class SaleDetailController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -63,7 +92,6 @@ class SaleDetailController extends Controller
      */
     public function edit($id)
     {
-        //
     }
 
     /**

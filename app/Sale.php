@@ -10,4 +10,7 @@ class Sale extends Model
 
     protected $fillable = ['date_sales', 'total_sale', 'rut','rut_clients'];
 
+    
+
+
 }

@@ -13,6 +13,7 @@
                                     class="nc-icon nc-alert-circle-i" style="color:darkgoldenrod"></i></a>
                         </div>
                         {{-- Buscador --}}
+
                         <div class="col-md-3">
 
                             <form method="GET" action="{{ route('sales.index') }}" role="form">
@@ -46,6 +47,7 @@
                     </div>
                 </div>
                 <div class="card-body">
+
                     <div class="table-responsive">
                         <table class="table">
                             <thead>
@@ -58,17 +60,21 @@
                                 </tr>
                             </thead>
                             <tbody>
-
                                 @foreach ($products as $product)
                                 <tr>
                                     @foreach ($categories as $category)
                                     @if ($category->id_categories == $product->id_categories)
-                                        <td>{{$category->name}}</td>
-
+                                    <td>{{$category->name}}</td>
                                     <td>{{$product->title}}</td>
                                     <td>{{$product->price}}</td>
+                                        
                                     <td>{{$product->stock}}</td>
-                                    <td><a href="{{route('sales.shopping_cart',$product->id_products)}}"><i class="nc-icon nc-cart-simple icon-medium" style="color:green"></i></a>
+
+
+                                    <td>
+                                        <a href="{{route('sales.show',$product->id_products)}}"><i
+                                                class="nc-icon nc-cart-simple icon-medium" style="color:green"></i></a>
+
                                     </td>
                                     @endif
                                     @endforeach
@@ -82,7 +88,7 @@
                                 {{$products->render()}}
 
                             </ul>
-                          </nav>
+                        </nav>
                     </div>
                 </div>
             </div>

@@ -99,17 +99,13 @@ Route::get('products/pdf','ProductController@exportPdf')->name('products.pdf');
 //:::::::::::::::://
 //Muestra las ventas
 Route::get('sales','SaleController@index')->name('sales.index');
-// Crear una venta
-Route::get('sales/create','SaleController@create')->name('sales.create');
-Route::post('sales','SaleController@store')->name('sales.store');
-//Edita una venta
-Route::get('sales/{sale}/edit','SaleController@edit')->name('sales.edit')->where('sale','[0-9]+');
-Route::put('sales/{sale}','SaleController@update')->name('sales.update')->where('sale','[0-9]+');
-// Eliminar una venta
-Route::get('sales/{sale}/destroy',[ 'uses' => 'SaleController@destroy','as' => 'sales.destroy'])->where('sale','[0-9]+');
-////////////////////// 
-//////////////////////
-Route::get('sales/{product}/shopping_cart','SaleController@shopping_cart')->name('sales.shopping_cart')->where('product','[0-9]+');
+// Almacena los productos en un carrito de compras
+Route::get('sales/shopping_carts/{sale}',[ 'uses' => 'SaleController@shopping_carts','as' => 'sales.shopping_carts'])->where('sale','[0-9]+');
+
+
+Route::get('sales/{sales}','SaleController@show')->name('sales.show');
+
+Route::put('sales/{sales}','SaleController@update')->name('sales.update')->where('sales','[0-9]+');
 
 
 //:::::::::::::::::::://
@@ -118,3 +114,6 @@ Route::get('sales/{product}/shopping_cart','SaleController@shopping_cart')->name
 
 //Muestra las ventas
 Route::get('sales_details','SaleDetailController@index')->name('sales_details.index');
+
+Route::post('sales_details','SaleDetailController@store')->name('sales_details.store');
+

@@ -91,7 +91,7 @@
                                 <input type="submit" value="Vaciar Carro" class="btn btn-danger btn-block">
                             </div>
                             <div class="col-xs-4 col-sm-4 col-md-4">
-                                <a href="{{url('sales')}}" class="btn btn-info btn-block">Atrás</a>
+                                <a href="{{route('sales.index')}}" class="btn btn-info btn-block">Atrás</a>
                             </div>
                         </div><br>
                         <label for="">¿Deseas continuar con la compra?</label>

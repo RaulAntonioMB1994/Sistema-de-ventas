@@ -9,23 +9,24 @@
                     <h5 class="card-title">Boleta</h5>
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="" role="form">
+                    <form method="POST" action="{{ route('sales_details.store') }}" role="form">
                         {{ csrf_field() }}
                         <label for="">Datos de boleta:</label>
+
                         <hr>
                         <div class="row">
                             <div class="col-md-6 pr-1">
                                 <div class="form-group">
                                     <label>Nombre</label>
-                                    <input type="text" name="title" class="form-control" placeholder="Titulo" value=""
-                                        required>
+                                    <input type="text" name="name" class="form-control" placeholder="nombre" value=""
+                                        >
                                 </div>
                             </div>
                             <div class="col-md-6 pr-1">
                                 <div class="form-group">
                                     <label>Rut</label>
-                                    <input type="text" name="title" class="form-control" placeholder="Titulo" value=""
-                                        required>
+                                    <input type="text" name="rut" class="form-control" placeholder="Rut" value=""
+                                        >
                                 </div>
                             </div>
                         </div>
@@ -33,15 +34,15 @@
                             <div class="col-md-6 pr-1">
                                 <div class="form-group">
                                     <label>Email</label>
-                                    <input type="text" name="title" class="form-control" placeholder="Titulo" value=""
-                                        required>
+                                    <input type="text" name="email" class="form-control" placeholder="Correo electrónico" value=""
+                                        >
                                 </div>
                             </div>
                             <div class="col-md-6 pr-1">
                                 <div class="form-group">
                                     <label>Telefono</label>
-                                    <input type="text" name="title" class="form-control" placeholder="Titulo" value=""
-                                        required>
+                                    <input type="text" name="phone" class="form-control" placeholder="Telefono" value=""
+                                        >
                                 </div>
                             </div>
 
@@ -67,7 +68,7 @@
                         </div>
 
 
-                        <div class="row">
+                        {{-- <div class="row">
                             <div class="offset-md-6 col-md-6 pr-1">
                                 <div class="form-group  form-check-inline">
                                     <div class="checkbox">
@@ -96,7 +97,7 @@
                                         required>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <label for="">Datos para el despacho:</label>
                         <hr>
                         <div class="row">
@@ -105,10 +106,14 @@
                                     <label>Region</label>
                                 </div>
                             </div>
+
+                            
                             <div class="col-md-6 pr-1">
                                 <div class="form-group">
-                                    <select class="form-control" name="id_categories">
-                                        <option value=""></option>
+                                    <select class="form-control" name="regions">
+                                        @foreach ($regions as $r)
+                                        <option value="{{$r->id_region}}">{{$r->name}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -121,8 +126,10 @@
                             </div>
                             <div class="col-md-6 pr-1">
                                 <div class="form-group">
-                                    <select class="form-control" name="id_categories">
-                                        <option value=""></option>
+                                    <select class="form-control" name="cities">
+                                        @foreach ($cities as $c)
+                                        <option value="{{$c->id_city}}">{{$c->name}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -136,23 +143,7 @@
                             <div class="col-md-6 pr-1">
                                 <div class="form-group">
                                     <input type="text" name="address" class="form-control" placeholder="Dirección"
-                                        value="" required>
-                                </div>
-                            </div>
-                        </div>
-                        <label for="">Costo despacho a domicilio:</label>
-                        <hr>
-                        <div class="row">
-                            <div class="col-md-6 pr-1">
-                                <div class="form-group">
-                                    <p>Envio estandar</p>
-                                </div>
-                            </div>
-                            <div class="offset-md-3 col-md-3 pr-1">
-                                <div class="form-group">
-                                    <p>Gasto de envio</p>
-                                    <input type="text" name="address" class="form-control" disabled
-                                        placeholder="Dirección" value="2000" required>
+                                        value="" >
                                 </div>
                             </div>
                         </div>
@@ -162,24 +153,31 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <td>Cantidad</td>
+                                        <td>Stock</td>
                                         <td>Producto(s)</td>
                                         <td>Precio unitario</td>
-                                        <td>SubTotal</td>
+                                        <td>Cantidad</td>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ($products as $p)
+
                                     <tr>
-                                        <td>3</td>
-                                        <td>Papelucho</td>
-                                        <td>$2000</td>
-                                        <td>$2000</td>
+                                        <td>{{$p->stock}}</td>
+                                        <td>{{$p->title}}</td>
+                                        <td>{{$p->price}}</td>
+
+                                        <td>
+                                        <input type="number" class="form-control" name="quantity" value="{{$cantidad}}" min="1" max="{{$p->stock}}">
+                                        </td>
                                     </tr>
+                                    @endforeach
+
                                 </tbody>
                             </table>
                             <div class="row">
                                 <div class=" offset-md-8 col-md-4">
-                                    <p>TOTAL NETO $2000</p>
+                                    <p>{{$total}}</p>
                                     <hr>
                                     <p>IVA $800</p>
                                     <hr>
